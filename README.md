@@ -1,2 +1,2 @@
 # advent
-My solutions for the advent of code to save Christmas
+Advent of Code Solutions
