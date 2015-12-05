@@ -1,0 +1,46 @@
+DROP DATABASE 7seas;
+CREATE DATABASE 7seas;
+USE 7seas;
+
+CREATE TABLE products (
+	id SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+	brand VARCHAR(60) NOT NULL,
+	name VARCHAR(154) NOT NULL,
+	category VARCHAR(40) NOT NULL,
+	price FLOAT NOT NULL
+);
+
+CREATE TABLE inventory (
+	id SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+	s SMALLINT UNSIGNED NOT NULL,
+	m SMALLINT UNSIGNED NOT NULL,
+	l SMALLINT UNSIGNED NOT NULL
+);
+
+INSERT INTO products (brand, name, category, price) VALUES 
+("Brixton", "Cane Premium", "T-Shirt", 24.95),
+("Diamond Supply Co", "Clarity High", "T-Shirt", 24.95),
+("Diamond Supply Co", "X Cassie Neon Hand", "T-Shirt", 24.95),
+("Hurley", "Danger Sublimated", "T-Shirt", 24.95),
+("Hurley", "Poster Blend", "T-Shirt", 24.95),
+("Mishka", "Keep Watch GID Tie Dye", "T-Shirt", 24.95),
+("Riot Society", "Me So Thorny", "T-Shirt", 24.95),
+("Rook", "No Swimming", "T-Shirt", 24.95),
+("The Hundreds", "Dos Adam Black", "T-Shirt", 24.95),
+("Visual by Van Styles", "Ana Cheri Denim Vest", "T-Shirt", 24.95),
+("Volcom", "Gallery", "T-Shirt", 24.95),
+("Young & Reckless", "Palm City", "T-Shirt", 24.95);
+
+INSERT INTO inventory (s, m, l) VALUES 
+(12, 39, 19),
+(12, 39, 19),
+(12, 39, 19),
+(12, 39, 19),
+(12, 39, 19),
+(12, 39, 19),
+(12, 39, 19),
+(12, 39, 19),
+(12, 39, 19),
+(12, 39, 19),
+(12, 39, 19),
+(12, 39, 19);

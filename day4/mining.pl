@@ -2,11 +2,8 @@
 
 use Digest::MD5 qw(md5_hex);
 
-my $secret = "yzbqklnj";
 my $answer = 0;
+my $secret = "yzbqklnj";
 
-while(md5_hex($secret . $answer) !~ /^000000/) {
-	$answer++;
-}
-
+while(md5_hex($secret . ++$answer) !~ /^00000/){};
 print "Answer: $answer\n";
