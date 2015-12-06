@@ -1,4 +1,4 @@
-#!/bin/usr/env perl
+#!/usr/bin/env perl
 
 use Digest::MD5 qw(md5_hex);
 
