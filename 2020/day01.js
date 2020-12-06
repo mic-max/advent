@@ -27,7 +27,7 @@ function threeEntriesSummingTo(list, sumGoal) {
 	return -1
 }
 
-let input = util.readLines('day01_input.txt').map(x => parseInt(x))
+let input = util.readLines('input/day01.txt').map(x => parseInt(x))
 
 let answer1 = twoEntriesSummingTo(input, 2020)
 console.log(answer1)

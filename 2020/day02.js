@@ -1,6 +1,6 @@
 const util = require('./util.js')
 
-let input = util.readLines('day02_input.txt')
+let input = util.readLines('input/day02.txt')
 
 function isValidPassword1(min, max, letter, password) {
 	let timesSeen = 0

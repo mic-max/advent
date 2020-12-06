@@ -1,6 +1,6 @@
 const util = require('./util.js')
 
-let input = util.readLines('day04_input.txt')
+let input = util.readLines('input/day04.txt')
 
 const fields = ['byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid']
 

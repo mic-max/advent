@@ -1,6 +1,6 @@
 const util = require('./util.js')
 
-let input = util.readLines('day03_input.txt')
+let input = util.readLines('input/day03.txt')
 
 function treesEncountered(input, right, down) {
 	let positionX = right
