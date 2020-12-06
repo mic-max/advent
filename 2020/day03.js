@@ -1,17 +1,13 @@
 const util = require('./util.js')
 
-let input = util.readLines('input/day03.txt')
-
 function treesEncountered(input, right, down) {
+	let trees = 0
 	let positionX = right
 	let positionY = down
-	let trees = 0
-
 	const lineLength = input[0].length
-	while (positionY < input.length) {
-		if (input[positionY][positionX % lineLength] === '#')
-			trees++
 
+	while (positionY < input.length) {
+		trees += input[positionY][positionX % lineLength] === '#' ? 1 : 0
 		positionX += right
 		positionY += down
 	}
@@ -19,13 +15,20 @@ function treesEncountered(input, right, down) {
 	return trees
 }
 
-let trees1 = treesEncountered(input, 3, 1)
-let trees2 = treesEncountered(input, 1, 1)
-let trees3 = treesEncountered(input, 5, 1)
-let trees4 = treesEncountered(input, 7, 1)
-let trees5 = treesEncountered(input, 1, 2)
+(function() {
+	let input = util.readLines('input/day03.txt')
 
-let answer2 = trees1 * trees2 * trees3 * trees4 * trees5
+	let paths = [
+		{right: 3, down: 1},
+		{right: 1, down: 1},
+		{right: 5, down: 1},
+		{right: 7, down: 1},
+		{right: 1, down: 2}
+	]
 
-console.log(trees1)
-console.log(answer2)
+	let encounters = paths.map(x => treesEncountered(input, x.right, x.down))
+	let product = encounters.reduce((a, b) => a * b)
+
+	console.log(encounters[0]) // 167
+	console.log(product) // 736527114
+}())

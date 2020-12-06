@@ -1,37 +1,34 @@
 const util = require('./util.js')
 
-let input = util.readLines('input/day02.txt')
-
 function isValidPassword1(min, max, letter, password) {
 	let timesSeen = 0
 	for (let char of password) {
-		if (char === letter) {
+		if (char === letter)
 			timesSeen++
-		}
 	}
-
-	return min <= timesSeen && timesSeen <= max
+	return util.inRangeInclusive(timesSeen, min, max)
 }
 
 function isValidPassword2(index1, index2, letter, password) {
 	return password[index1 - 1] === letter ^ password[index2 - 1] === letter
 }
 
-let totalValidPasswords1 = 0
-let totalValidPasswords2 = 0
+(function() {
+	let input = util.readLines('input/day02.txt')
 
-for (let line of input) {
-	let a = parseInt(line.substring(0, line.indexOf('-')))
-	let b = parseInt(line.substring(line.indexOf('-') + 1, line.indexOf(' ')))
-	let letter = line[line.indexOf(' ') + 1]
-	let password = line.substring(line.indexOf(':') + 2)
+	let totalValidPasswords1 = 0
+	let totalValidPasswords2 = 0
 
-	if (isValidPassword1(a, b, letter, password))
-		totalValidPasswords1++
+	for (let line of input) {
+		let match = /^(\d+)-(\d+) ([a-z]): ([a-z]+)$/.exec(line)
+		let [a, b, letter, password] = match.slice(1, 5)
+		a = parseInt(a)
+		b = parseInt(b)
 
-	if (isValidPassword2(a, b, letter, password))
-		totalValidPasswords2++
-}
+		totalValidPasswords1 += isValidPassword1(a, b, letter, password) ? 1 : 0
+		totalValidPasswords2 += isValidPassword2(a, b, letter, password) ? 1 : 0
+	}
 
-console.log(totalValidPasswords1)
-console.log(totalValidPasswords2)
+	console.log(totalValidPasswords1) // 493
+	console.log(totalValidPasswords2) // 593
+}())

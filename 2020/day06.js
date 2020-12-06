@@ -1,40 +1,35 @@
 const util = require('./util.js')
 
-let input = util.readLines('input/day06.txt')
-
-function anySaidYesTo(input) {
-	let sumOfYeses = 0
+function anySaidYesTo(group) {
 	let currentAnswers = new Set()
-	for (let line of input) {
-		if (line === '') {
-			sumOfYeses += currentAnswers.size
-			currentAnswers.clear()
-		} else {
-			// Add each letter to the set
-			line.split('').forEach(x => currentAnswers.add(x))
-		}
-	}
-	return sumOfYeses
+	for (let passenger of group)
+		passenger.forEach(x => currentAnswers.add(x))
+	return currentAnswers.size
 }
 
-function allSaidYesTo(input) {
-	let passengers = []
-	let count = 0
+function allSaidYesTo(group) {
+	let start = group[0]
+	for (let i = 1; i < group.length; i++)
+		start = start.filter(x => group[i].includes(x))
+	return start.length
+}
+
+(function() {
+	let input = util.readLines('input/day06.txt')
+
+	let group = []
+	let anySaidYes = 0
+	let allSaidYes = 0
 	for (let line of input) {
 		if (line === '') {
-			let start = passengers[0]
-			for (let i = 1; i < passengers.length; i++)
-				start = start.filter(x => passengers[i].includes(x))
-			count += start.length
-			passengers = []
+			anySaidYes += anySaidYesTo(group)
+			allSaidYes += allSaidYesTo(group)
+			group = []
 		} else {
-			// Add each letter to the set
-			passengers.push(line.split(''))
+			group.push(line.split(''))
 		}
 	}
 
-	return count
-}
-
-console.log(anySaidYesTo(input))
-console.log(allSaidYesTo(input))
+	console.log(anySaidYes) // 6532
+	console.log(allSaidYes) // 3427
+}())
