@@ -52,10 +52,7 @@ let validPassportCount = 0
 let strictlyValidPassportCount = 0
 for (let i = 0; i < input.length; i++) {
 	let line = input[i]
-	if (line === '' || i == input.length - 1) {
-		if (i == input.length - 1)
-			addFieldsToPassport(passport, line)
-
+	if (line === '') {
 		if (isValidPassport(passport)) {
 			validPassportCount++
 			if (isStrictlyValidPassport(passport))
