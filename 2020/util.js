@@ -12,3 +12,7 @@ exports.readLines = (filename) => {
 exports.inRangeInclusive = (value, min, max) => {
 	return min <= value && value <= max
 }
+
+exports.isEmpty = (obj) => {
+	return Object.keys(obj).length === 0;
+}

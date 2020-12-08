@@ -15,8 +15,13 @@ function getElementFromSet(set) {
 }
 
 function bagInThisOne(allBags, colour) {
-	// TODO
-	return 0
+	if (util.isEmpty(allBags[colour]))
+		return 1
+
+	let sum = 1
+	for (let inside in allBags[colour])
+		sum += allBags[colour][inside] * bagInThisOne(allBags, inside)
+	return sum
 }
 
 (function() {
@@ -47,5 +52,5 @@ function bagInThisOne(allBags, colour) {
 	}
 
 	console.log(answerBags.size - 1) // 139
-	console.log(bagInThisOne(allBags, 'shiny gold')) // TODO
+	console.log(bagInThisOne(allBags, 'shiny gold') - 1) // 58175
 }())
