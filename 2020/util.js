@@ -9,6 +9,10 @@ exports.readLines = (filename) => {
 	}
 }
 
+exports.readGroups = (filename) => {
+	// TODO
+}
+
 exports.inRangeInclusive = (value, min, max) => {
 	return min <= value && value <= max
 }
