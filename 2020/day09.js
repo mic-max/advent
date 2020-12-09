@@ -20,8 +20,10 @@ function sumUpTo(array, goal) {
 	
 	for (let i = prevNumberCount; i < numbers.length; i++) {
 		let hasSum = sumUpTo(lastNumbers, numbers[i])
-		if (!hasSum)
+		if (!hasSum) {
 			firstFail = numbers[i]
+			break
+		}
 		lastNumbers.shift()
 		lastNumbers.push(numbers[i])
 	}
