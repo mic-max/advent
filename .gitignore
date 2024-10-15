@@ -1,1 +1,3 @@
 *.exe
+.aocdlconfig
+input*.txt
