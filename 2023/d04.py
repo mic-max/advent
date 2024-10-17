@@ -129,16 +129,13 @@ def frame_1(L, helper):
     return res
 
 def part_2(L):
-    totals = {}
+    totals = [1] * len(L)
 
-    res = 0
-    for j in range(len(L) - 1, -1, -1):
-        matches = slicing_1_winp_helper(L[j])
-        totals[j] = 1
-        for c in range(j + 1, j + matches + 1):
-            totals[j] += totals[c]
-        res += totals[j]
-    return res
+    for i, line in enumerate(L):
+        matches = slicing_1_winp_helper(line)
+        for j in range(i + 1, i + matches + 1):
+            totals[j] += totals[i]
+    return sum(totals)
 
 if __name__ == '__main__':
     L = util.strip_stdin()
