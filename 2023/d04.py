@@ -1,6 +1,5 @@
 # Python
 import re
-import sys
 
 # PIP
 import ahocorasick
@@ -130,26 +129,19 @@ def frame_1(L, helper):
     return res
 
 def part_2(L):
-    cards = []
-
-    for line in L:
-        matches = slicing_1_winp_helper(line)
-        cards.append({
-            'total': 0 if matches else 1,
-            'matches': matches
-        })
+    totals = {}
 
     res = 0
     for j in range(len(L) - 1, -1, -1):
-        if not cards[j]["total"]:
-            cards[j]['total'] = 1
-            for c in range(j + 1, j + cards[j]['matches'] + 1):
-                cards[j]['total'] += cards[c]['total']
-        res += cards[j]['total']
+        matches = slicing_1_winp_helper(L[j])
+        totals[j] = 1
+        for c in range(j + 1, j + matches + 1):
+            totals[j] += totals[c]
+        res += totals[j]
     return res
 
 if __name__ == '__main__':
-    L = [line.strip() for line in sys.stdin]
+    L = util.strip_stdin()
     results = util.run(L, 1, 26426, [slicing_1_pinw, slicing_1_winp, aho_corasick_1_pinw, aho_corasick_1_winp, regex_1_pinw, regex_1_winp])
     results += util.run(L, 2, 6227972, [part_2])
     util.print_table(results)
