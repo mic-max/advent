@@ -1,14 +1,12 @@
+# Python
 import collections
 import functools
 import operator
-import sys
-import statistics
-import time
 
-P1 = 2348
-P2 = 76008
+# Local
+import util
 
-def part1(L, part_two = False):
+def part1(L):
     res = 0
     max_counts = { 'red': 12, 'green': 13, 'blue': 14 }
 
@@ -29,7 +27,7 @@ def part1(L, part_two = False):
             res += i
     return res
 
-def part2(L, part_two = False):
+def part2(L):
     res = 0
 
     for idx, line in enumerate(L, 1):
@@ -44,24 +42,8 @@ def part2(L, part_two = False):
         res += functools.reduce(operator.mul, counts.values(), 1)
     return res
 
-def run(name, function, fastest = None, part_two = False):
-    start = time.perf_counter()
-    res = function(L, part_two)
-    elapsed = time.perf_counter() - start
-    print(f"| {name:15} | {elapsed:.6f} |")
-    assert res == (P2 if part_two else P1)
-    return elapsed
-
 if __name__ == "__main__":
-    L = [line.strip() for line in sys.stdin]
-    
-    print(f"Average Reveals: {statistics.mean([x.count(';') for x in L])}")
-    print(f"Median Reveals: {statistics.median([x.count(';') for x in L])}")
-    print(f"Min Reveals: {min([x.count(';') for x in L])}")
-    print(f"Max Reveals: {max([x.count(';') for x in L])}")
-    
-    print("| Part Number  | Time     |")
-    print("| ------------ | -------- |")
-    p1_elapsed = run("Part 1", part1, None)
-    p2_elapsed = run("Part 2", part2, None, True)
-
+    L = util.strip_stdin()
+    results = util.run(L, 1, 2348, [part1])
+    results += util.run(L, 2, 76008, [part2])
+    util.print_table(results)

@@ -1,2 +1,3 @@
 ahocorasick
 num2words
+tabulate
