@@ -1,9 +1,11 @@
+# Python
 import operator
 import sys
 import tabulate
 import time
+import typing
 
-def run(L, part, expected, functions):
+def run(L: typing.List[str], part: int, expected: int, functions: typing.List[any]) -> typing.List[any]:
     results = []
 
     for f in functions:
@@ -21,10 +23,10 @@ def run(L, part, expected, functions):
     results.sort(key=operator.itemgetter(2))
     return results
 
-def print_table(table):
+def print_table(table: typing.List[any]):
     headers = ["Name", "Part", "Time (s)", "Slower Than Best", "Result", "Correct"]
     res = tabulate.tabulate(table, headers=headers, tablefmt="github")
     print(res)
 
-def strip_stdin():
+def strip_stdin() -> typing.List[str]:
     return [line.strip() for line in sys.stdin]
