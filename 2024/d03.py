@@ -32,8 +32,8 @@ def simple_2(L):
 
 if __name__ == '__main__':
     L = util.strip_stdin()
-    results = util.run(L, 1, 0, [simple_1])
-    results += util.run(L, 2, 0, [simple_2])
+    results = util.run(L, 1, 189600467, [simple_1])
+    results += util.run(L, 2, 107069718, [simple_2])
     util.print_table(results)
 
 
